@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        /* this css rule enables smooth scrolling from section to section and not
+        jumping from one section to the next*/
+        html{
+            scroll-behavior: smooth;
+        }
+        /* fix header css so ite remains fixed at the top while page scroll */
+        header{
+            width: 100%;
+            padding: 2%;
+            height: 40px;
+            position: fixed;
+            z-index: 100;
+            background-color: white;
+
+        }
+        #logo{
+            float: left;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+        }
+        nav{
+            float: right;
+        }
+        header nav ul{
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        header nav ul li{
+            float: left;
+            margin-right: 25px;
+        }
+        header nav ul li a{
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            font-size: 20px;
+            cursor: pointer;
+            color: black;
+            font-family: 'Montserrat', sans-serif;
+        }
+        /* this css will be added by javaScript to the currently active nav link */
+        .active{
+            color: #4da6ff;
+            border-bottom: 2px solid #4da6ff;
+        }
+        #herosection{
+            top: 0;
+            background: #e6f0fa;
+            height: 450px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 3%;
+        }
+        #authorintro{
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            font-weight: bold;
+            font-size: 2.4em;
+        }
+        #title2{
+            font-size: 3.5em;
+        }
+        #title{
+            color: blue;
+        }
+        #authorimage{
+            width: 35%;
+            height: 100%;
+        }
+        #authorimage img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        #aboutsection{
+            top: 0;
+            width: 100%;
+            padding: 3%;
+            height: 400px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #aboutauthor{
+            width: 70%;
+        }
+        #aboutauthor h1{
+            margin-bottom: 30px;
+        }
+        #aboutauthor p{
+            font-size: 1.5em;
+            line-height: 1.6;
+        
+        }
+        #icons{
+            width: 30%;
+            padding: 3%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        #box1{
+            width: 60px;
+            height: 60px;
+            border: 2px solid blue;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            background-color: blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #box2{
+           width: 60px;
+            height: 60px;
+            border: 2px solid #a78bfa;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            background-color: #a78bfa;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            font-size: 17px; 
+        }
+        #box3{
+           width: 60px;
+            height: 60px;
+            border: 2px solid yellow;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            background-color: yellow;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            font-size: 20px;   
+        }
+        #skill{
+            top: 0;
+            width: 100%;
+            padding: 3%;
+            display: flex;
+            flex-direction: column;
+        }
+        #heading{
+            margin-bottom: 30px;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+        #intro{
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-transform: capitalize;
+        }
+        #skill ul{
+            list-style-type: disc;
+        }
+        #skill ul li::marker{
+            font-size: 26px;
+            font-weight: bold;
+            color: #a78bfa;
+        }
+        #skill ul li{
+            font-size: 1.5em;
+        }
+        #projects{
+            width: 100%;
+            padding: 3%;
+            top: 0;
+        }
+        #projects h2{
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        #projectgrid{
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: minmax(300px, auto);
+            gap: 10px;
+        }
+        #col1{
+            grid-column: 1/3;
+        }
+        #col2{
+            grid-column: 3/5;
+        }
+        #col3{
+            grid-column:5/7;
+        }
+        #col4{
+            grid-column: 1/3;
+        }
+        #col5{
+            grid-column:3/5 ;
+        }
+        #col6{
+            grid-column: 5/7;
+        }
+        #col1 img{
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+        #col1 p{
+            text-align: center;
+            font-size: 1.5em;
+        }
+        #col2 img{
+             width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+        #col2 p{
+            text-align: center;
+            font-size: 1.5em;
+        }
+        #col3 img{
+             width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+        #col3 p{
+            text-align: center;
+            font-size: 1.5em;
+        }
+        #col4 img{
+           width: 100%;
+            height: 280px;
+            object-fit: cover;  
+        }
+        #col4 p{
+            text-align: center;
+            font-size: 1.5em;
+        }
+        #col5 img{
+             width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+        #col5 p{
+            text-align: center;
+            font-size: 1.5em;
+        }
+        #col6 img{
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+        #col6 p{
+            text-align: center;
+            font-size: 1.5em; 
+        }
+        #contactbody{
+            top: 0;
+            width: 100%;
+            padding: 3%;
+            display: flex;
+            flex-direction: row;
+            background: linear-gradient(135deg, #a7c7e7, #e6f2ff);
+        }
+        #writeup{
+            width: 40%;
+        }
+        #writeup h3{
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+        }
+        #contactbody p{
+            font-size: 1.3em;
+            color: white;
+            line-height: 1;
+        }
+        #contactform{
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+            align-items: flex-end;
+
+        }
+        #input1{
+            width: 80%;
+            height: 40px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        #input2{
+          width: 80%;
+            height: 40px;
+            padding: 10px;
+            margin-bottom: 10px;  
+        }
+        #input3{
+            width: 80%;
+            height: 60px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        #sendbtn{
+            width: 20%;
+            height: 40px;
+            background-color: blue;
+            cursor: pointer;
+            color: white;
+            font-size: 1.3em;
+            border: none;
+            border-radius: 10px;
+        }
+        #sendbtn:hover{
+            background-color: #0056b3;
+        }
+        footer{
+            width: 100%;
+            background:linear-gradient(135deg, #8eb0cc, #c9e0f0) ;
+        }
+       footer ul{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        list-style-type: none;
+        gap: 25px;
+       }
+       footer ul li a img{
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+        cursor: pointer;
+        text-decoration: none;
+       }
+       footer p{
+        text-align: center;
+        color: white;
+        font-size: 14px;
+       }
+        
+ </style>
+</head>
+<body>
+   <header>
+    <div id="logo">JENNY</div>
+    <nav>
+        <ul>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#project">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    <!--make your home page active by default because page load from the top-->
+    </nav>
+   </header>
+   <main>
+    <section id="home">
+        <div id="herosection">
+            <div id="authorintro">
+                <p>Hello, I'm</p>
+                <p id="title2">Jenny</p>
+                <p>I'm a <span id="title">Web Developer</span></p>
+            </div>
+            <div id="authorimage">
+             <img src="images/port4.png" alt="authorimage">
+            </div>
+        </div>
+    </section>
+    <section id="about">
+        <div id="aboutsection">
+            <div id="aboutauthor">
+                <h1>About Me</h1>
+                <p>Hi, i'm Jenny, a web designer passionate about creating beautiful,
+                    user-friendly websites. i specialize in turning ideas into fully
+                    functional digital experiences using HTML, CSS and javascript.
+                    whether it's a portfolio or a business platform, i focus on design that
+                    engage and functions seamlessly. let's create something amazing together,
+                    your digital vision brought to life!
+                </p>
+            </div>
+            <div id="icons">
+                <div id="box1">HTML</div>
+                <div id="box2">CSS</div>
+                <div id="box3">JS</div>
+            </div>
+        </div>
+    </section>
+    <section id="skills">
+       <div id="skill">
+        <div id="heading">Skills</div>
+        <div id="intro">i specialize in building clean, responsive and 
+            user-friendly websites using modern web technologies
+        </div>
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>javaScript</li>
+            <li>Responsive Web Design</li>
+            <li>Git & GitHub</li>
+        </ul>
+       </div>
+    </section>
+    <section id="project">
+        <div id="projects">
+            <h2>My Projects</h2>
+            <div id="projectgrid">
+            <div id="col1">
+                <img src="images/port1.png" alt="bridal image">
+                <p>Bridal Website</p>
+            </div>
+            <div id="col2">
+                <img src="images/port2.png" alt="restaurant image">
+                <p>Restaurant Website</p>
+            </div>
+            <div id="col3">
+                <img src="images/port7.png" alt="portfolio image">
+                <p>Portfolio Website</p>
+            </div>
+            <div id="col4">
+                <img src="images/port3.png" alt="quote image">
+                <p>Quote Generator App</p>
+            </div>
+            <div id="col5">
+                <img src="images/port6.png" alt="to-do list ">
+                <p>To-Do List App</p>
+            </div>
+            <div id="col6">
+                <img src="images/port5.png" alt="calculator image">
+                <p>Calculator App</p>
+            </div>
+        </div>
+        </div>
+        
+    </section>
+    <section id="contact">
+        <div id="contactbody">
+            <div id="writeup">
+                <h3>Contact Me</h3>
+                <p>Have a project in mind or want to collaborate feel free to
+                    send me a message and i will get back to you as soon as possible
+                </p>
+            </div>
+            <div id="contactform">
+                <input type="text" placeholder="Name" required id="input1">
+                <input type="text" placeholder="Email" required id="input2">
+                <input type="text" placeholder="Message" required id="input3">
+                
+                <button onclick="sendMessage()" id="sendbtn">Send Message</button>
+        
+                
+            </div>
+        </div>
+    </section>
+   </main>
+   <footer>
+    <ul>
+        <!--replace the fake links here with your actual url for the listed media-->
+        <li><a href="https://youtube.com/your-channel-name"> <img src="images/porticon2.png" alt="Socialicon"></a></li>
+        <li><a href="https://github.com/your-user-name"><img src="images/porticon3.webp" alt="socialicon"></a></li>
+        <li><a href="mailto:your-email@example.com"><img src="images/porticon1.png" alt="socialicon"></a></li>
+    </ul>
+    <p>&copy; <span id="year"></span> Jenny's Webcraft: All rights reserved.
+    Designed and developed by Jenny</p>
+   </footer>
+   <script>
+    // this code is to enable automatic changing of year
+    document.getElementById('year').textContent = new Date().getFullYear()
+    // get all the nav links and section
+    const link = document.querySelectorAll('nav ul li a')
+    const sections = document.querySelectorAll('section')
+    /* this code adds the active class to the navigation link. when a user clicks on it,
+    it highlights the section(home, about, skill, project and contact)that the user
+    selects*/ 
+    // loop through all the link and add a click eventlistener
+    link.forEach((links)=>{
+        links.addEventListener('click', function(){
+//here i looped through the links again to totally remove active class from all links
+            link.forEach((links)=>{
+                links.classList.remove('active')
+  // this is used to target only the click link and add the active class to it alone
+                this.classList.add('active')
+            })
+
+        })
+    })
+    // this code will highlight active nav link based on scroll position
+    // add a scroll event litsener to window
+    window.addEventListener('scroll', function(){
+        // remove active class from all links first
+        link.forEach((links)=>{
+            links.classList.remove('active')
+        })
+        // create a variable that will store the section that is visible
+            let current;
+        //loop through the sections home, about etc
+        sections.forEach((section)=>{
+            // get the section top position on the page
+            const sectionTop = section.offsetTop
+        // check if scroll reached any section and get the section
+        if(window.pageYOffset >= sectionTop - 200){
+            // get the section
+            current = section
+        } 
+    })
+     // check if user has reached the ending of the page
+     if(window.pageYOffset + window.innerHeight >= document.body.offsetHeight){
+        // get the last section
+        current = sections[sections.length - 1]
+     }
+     if(current){
+        // get the id of the visible section
+        let visibleSection = current.getAttribute('id')
+        // loop through the nav-links
+        link.forEach((links)=>{
+        if(links.getAttribute('href') === `#${visibleSection}`){
+            links.classList.add('active')
+        }
+     })
+     }
+     })
+     /* this function will enable visitors send a Whatsapp prefilled message directly
+     from the contact form */ 
+     function sendMessage(){
+        // get all the inputed values using the input box id
+        const input1 = document.getElementById('input1').value.trim()
+        const input2 = document.getElementById('input2').value.trim()
+        const input3 = document.getElementById('input3').value.trim()
+        // construct how you want the Whatsapp message to appear
+        const message = ` Hi Jenny, I want to get in touch.
+        Name: ${input1}
+        Email: ${input2}
+        Message: ${input3}
+        `
+        /*create a variable for your phone number, enter your actual whatsapp number
+        and to enable visitors who will visit your website through desktop, make sure
+        the whatsapp number has been logged into whatsapp web beforehand and enter 
+        number below in international formal e.g 234xxxxxxxxxx depending on your
+        country*/ 
+        let phone = '234XXXXXXXXXX'
+        // construct whatsapp url that will carry the message
+        let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
+        window.open(url, '_blank')
+        // input boxes should be emptied after button is clicked
+        document.getElementById('input1').value = ''
+        document.getElementById('input2').value = ''
+        document.getElementById('input3').value = ''
+     }
+
+   </script>
+  
+</body>
+</html>
